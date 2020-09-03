@@ -1,6 +1,6 @@
-const { app, BrowserWindow } = require('electron');
-const url = require("url");
-const path = require("path");
+const {app, BrowserWindow} = require('electron');
+const url                  = require("url");
+const path                 = require("path");
 
 // Prepare the main window var
 let win = null;
@@ -9,22 +9,23 @@ let win = null;
  * Create the main window
  * @return {BrowserWindow}
  */
-function createWindow () {
+function createWindow() {
     // Create the browser window
     win = new BrowserWindow({
-        width: 800,
-        height: 600,
-        webPreferences: {
-            nodeIntegration: true
+        width          : 1000,
+        height         : 700,
+        webPreferences : {
+            nodeIntegration            : true,
+            worldSafeExecuteJavaScript : true
         }
     });
 
     // Load the index.html file
     win.loadURL(
         url.format({
-            pathname: path.join(__dirname, `/electron-build/index.html`),
-            protocol: "file:",
-            slashes: true
+            pathname : path.join(__dirname, `/electron-build/index.html`),
+            protocol : "file:",
+            slashes  : true
         })
     );
 
