@@ -1,12 +1,14 @@
 {
   "name": "angular-electron-cordova-base",
   "version": "0.0.0",
-  "main" : "main.js",
+  "main": "main.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 4003",
     "build": "ng build",
     "start:electron": "ng build --base-href ./ --output-path electron-build/ && electron .",
+    "start:android": "npm run build:android && npm run --prefix ./cordova cordova:android",
+    "build:android": "ng build --base-href ./ --output-path ./cordova/www/ --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
