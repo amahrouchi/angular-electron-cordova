@@ -35,13 +35,6 @@ Open the IDE settings and go to: `Appearance & Behavior -> System settings -> An
 - Run `cd cordova`
 - Run `cordova platform add android` 
 - Run `cordova platform add ios` (if needed)
-- Then go back to the Angular project root with `cd ..`
-- Update the `src/index.html` file, change the `base href` tag to `<base href="./">`
-- Update the `cordova/package.json` file and add the new script: 
-    - `"cordova:android": "cordova run android --device"`
-- Update the root `package.json` file and add the new scripts: 
-    - `"start:android": "npm run build:android && npm run --prefix ./cordova cordova:android"`
-    - `"build:android": "ng build --output-path ./cordova/www/ --prod"`
     
 ### Build and run
 To build and run the project, execute the following command :
@@ -52,4 +45,5 @@ Install :
 - `adb` : Android Debug Bridge. To manage plugged Android devices.
 - Run `sudo usermod -aG plugdev $LOGNAME` to add your user to the `pludev` group to allow yourself to plug and manage android devices.
 - `apt-get install android-sdk-platform-tools-common`
-- View also: https://developer.android.com/studio/run/device
+
+View also: https://developer.android.com/studio/run/device
