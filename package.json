@@ -1,5 +1,6 @@
 {
-  "name": "angular-electron-cordova-base",
+  "name": "angular-electron-cordova",
+  "description" : "Run the starter Angular app in a browser, with ElectronJS and with Cordova/Android",
   "version": "0.0.0",
   "main": "main.js",
   "scripts": {
