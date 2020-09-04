@@ -6,6 +6,7 @@
 Regarding the ElectronJS integration, this repo is greatly inspired by:
 - https://github.com/maximegris/angular-electron
 
+I just wanted to take it from the start (a fresh Angular app) to understand what the `angular-electron` repo really does technically speaking.
 
 ## Cordova integration
 
