@@ -4,8 +4,10 @@
   "main": "main.js",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4003",
+    "start": "npm-run-all -p electron:serve ng:serve",
     "build": "ng build",
+    "ng:serve": "ng serve --port 4201",
+    "electron:serve": "wait-on tcp:4201 && npm run electron:start -- --serve",
     "electron:start": "npm run electron:build && electron .",
     "electron:build": "ng build --base-href ./ --output-path electron-build/",
     "electron:build:prod": "npm run electron:build -- --prod",
@@ -40,6 +42,7 @@
     "codelyzer": "^6.0.0",
     "electron": "^10.1.1",
     "electron-builder": "^22.8.0",
+    "electron-reload": "^1.5.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.0.0",
@@ -47,9 +50,11 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "npm-run-all": "^4.1.5",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~4.0.2"
+    "typescript": "~4.0.2",
+    "wait-on": "^5.2.0"
   }
 }

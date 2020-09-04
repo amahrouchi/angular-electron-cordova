@@ -4,6 +4,8 @@ const path                 = require("path");
 
 // Prepare the main window var
 let win = null;
+const args             = process.argv.slice(1);
+const serve            = args.some(val => val === '--serve');
 
 /**
  * Create the main window
@@ -20,14 +22,21 @@ function createWindow() {
         }
     });
 
-    // Load the index.html file
-    win.loadURL(
-        url.format({
-            pathname : path.join(__dirname, `/electron-build/index.html`),
-            protocol : "file:",
-            slashes  : true
-        })
-    );
+    if (serve) {
+        require('electron-reload')(__dirname, {
+            electron : require(`${__dirname}/node_modules/electron`)
+        });
+        win.loadURL('http://localhost:4201');
+    } else {
+        // Load the index.html file
+        win.loadURL(
+            url.format({
+                pathname : path.join(__dirname, `/electron-build/index.html`),
+                protocol : "file:",
+                slashes  : true
+            })
+        );
+    }
 
     win.webContents.openDevTools(); // TODO: do this only on DEV mode
 
