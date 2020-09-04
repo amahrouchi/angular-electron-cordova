@@ -1,27 +1,54 @@
-# AngularElectronCordovaBase
+# Angular Electron Cordova
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.0.
+## Electron integration
 
-## Development server
+### Source
+Regarding the ElectronJS integration, this repo is greatly inspired by:
+- https://github.com/maximegris/angular-electron
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Cordova integration
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Source
+Regarding Cordova, I used this article:
+- https://medium.com/@neridonk/create-a-mobile-app-in-angular-and-run-it-on-your-android-phone-with-cordova-5fe8a8adb598
 
-## Build
+### Requirements
+Install:
+- Node and NPM
+- Cordova (via NPM and globally)
+- openjdk-8-jdk (via apt)
+    - Remove all existing Java versions first
+- Gradle (via apt)
+- Android Studio (via the JetBrains Toolbox)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Add to your `.bashrc` file
+- `export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"`
+- `export ANDROID_SDK_ROOT="$HOME/Android/Sdk"`
 
-## Running unit tests
+### Inside Android Studio
+Open the IDE settings and go to: `Appearance & Behavior -> System settings -> Android SDK` and add the `API level 29`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Inside the Angular project
+- Run `cordova create cordova`
+- Run `cd cordova`
+- Run `cordova platform add android` 
+- Run `cordova platform add ios` (if needed)
+- Then go back to the Angular project root with `cd ..`
+- Update the `src/index.html` file, change the `base href` tag to `<base href="./">`
+- Update the `cordova/package.json` file and add the new script: 
+    - `"cordova:android": "cordova run android --device"`
+- Update the root `package.json` file and add the new scripts: 
+    - `"start:android": "npm run build:android && npm run --prefix ./cordova cordova:android"`
+    - `"build:android": "ng build --output-path ./cordova/www/ --prod"`
+    
+### Build and run
+To build and run the project, execute the following command :
+- `npm run start:android`
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Other 
+Install :
+- `adb` : Android Debug Bridge. To manage plugged Android devices.
+- Run `sudo usermod -aG plugdev $LOGNAME` to add your user to the `pludev` group to allow yourself to plug and manage android devices.
+- `apt-get install android-sdk-platform-tools-common`
+- View also: https://developer.android.com/studio/run/device
